@@ -8,8 +8,8 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract RealEstate is ERC721URIStorage {
    
-   using Counter for Counters.counter;
-   Counters.counter private _tokenIds;
+   using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
 
     constructor() ERC721("Real Estate", "REAL") {}
     function mint(string memory tokenURI) public returns(uint256) {
