@@ -1,30 +1,33 @@
-const { expect } = require("chai");
-const { ethers } = require("hardhat");
-
-const token = (n) => {
-  return ethers.utils.parseUnits(n.toString(), "ether");
-};
-
-describe("Escrow contract", () => {
+describe("Escrow", () => {
   let buyer, seller, inspector, lender;
+  let realEstate, escrow;
 
-  it("save the address", async () => {
+  beforeEach(async () => {
     [buyer, seller, inspector, lender] = await ethers.getSigners();
 
     const RealEstate = await ethers.getContractFactory("RealEstate");
-    const realEstate = await RealEstate.deploy();
+    realEstate = await RealEstate.deploy();
 
-    let tx = await realEstate.connect(seller).mint("www.google.com");
-    await tx.wait();
+    let transaction = await realEstate.connect(seller).mint("www.google.com");
+    await transaction.wait();
 
     const Escrow = await ethers.getContractFactory("Escrow");
-    const escrow = await Escrow.deploy(
+    escrow = await Escrow.deploy(
       realEstate.address,
       seller.address,
       inspector.address,
       lender.address
     );
+
+    transaction = await realEstate.connect(seller).approve(escrow.address, 1);
+    await transaction.wait();
+
+    transaction = await escrow
+      .connect(seller)
+      .list(1, buyer.address, tokens(10), tokens(5));
+    await transaction.wait();
   });
+
   describe("Deployment", () => {
     it("Returns NFT address", async () => {
       const result = await escrow.nftAddress();
