@@ -17,10 +17,8 @@ contract RealEstate is ERC721URIStorage {
         uint256 newItemId = _tokenIds.current();
         _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
-
         return newItemId;
     }
-
     function totalSupply() public view returns (uint256) {
         return _tokenIds.current();
     }
