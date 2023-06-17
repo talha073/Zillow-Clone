@@ -33,6 +33,6 @@ contract Escrow {
         isListed[_nftID] = true;
         purchasePrice[_nftID] = _purchasePrice;
         escrowAmount[_nftID] = _escrowAmount;
-        buyer[_nftID] = _buyer;
+        buyer[_nftID] = _buyer; 
     }
 }
