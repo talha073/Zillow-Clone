@@ -49,4 +49,10 @@ describe("Escrow", () => {
       expect(result).to.be.equal(lender.address);
     });
   });
+  describe("Listing", () => {
+    it("Updates as listed", async () => {
+      const result = await escrow.isListed(1);
+      expect(result).to.be.equal(true);
+    });
+  });
 });
