@@ -24,6 +24,10 @@ contract Escrow {
         require(msg.sender == seller, "Only seller can call this method");
         _;
     }
+     modifier onlyInspector() {
+        require(msg.sender == inspector, "Only inspector can call this method");
+        _;
+    }
  
     constructor(address _nftAddress, address payable _seller, address _inspector, address _lender) {
         nftAddress = _nftAddress;
@@ -41,4 +45,10 @@ contract Escrow {
     function depositeEarnet(uint256 _nftID) public payable onlyBuyer(_nftID){
         require(msg.value >= escrowAmount[_nftID], "invalid amount");
     } 
+     function updateInspectionStatus(uint256 _nftID, bool _passed)
+        public
+        onlyInspector
+    {
+        
+    }
 }
