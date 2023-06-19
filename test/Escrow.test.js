@@ -54,5 +54,14 @@ describe("Escrow", () => {
       const result = await escrow.isListed(1);
       expect(result).to.be.equal(true);
     });
+    it("Returns buyer", async () => {
+      const result = await escrow.buyer(1);
+      expect(result).to.be.equal(buyer.address);
+    });
+
+    it("Returns purchase price", async () => {
+      const result = await escrow.purchasePrice(1);
+      expect(result).to.be.equal(tokens(10));
+    });
   });
 });
