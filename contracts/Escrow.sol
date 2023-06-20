@@ -68,8 +68,7 @@ contract Escrow {
         isListed[_nftID] = false;
         (bool success, ) = payable(seller).call{value: address(this).balance}("");
         require(success);
-
-        // Transfer NFT to new Owner and Escrow Amount back to Lender
-        // IERC721(nftAddress).safeTransferFrom(address(this), msg.sender);   
+        // Transfer NFT to new Owner and Escrow Amount back to Lender  
+         IERC721(nftAddress).transferFrom(address(this), buyer[_nftID], _nftID);
     }
 }
