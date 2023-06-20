@@ -58,6 +58,16 @@ contract Escrow {
         if (isListed[_nftID]){
             approval[_nftID][msg.sender]=true;
         }
-        
+    }
+    function finalizeSale(uint256 _nftID) public {
+        require(!inspectionPassed[_nftID],"Already passed for Inspection");
+        require(approval[ _nftID ][buyer[_nftID]],"Not approved by the Seller");
+        require(approval[_nftID][seller]);
+        require(approval[_nftID][lender]);
+        require(address(this).balance >= purchasePrice[_nftID]);
+        isListed[_nftID] = false;
+
+        // Transfer NFT to new Owner and Escrow Amount back to Lender
+        // IERC721(nftAddress).safeTransferFrom(address(this), msg.sender);   
     }
 }
