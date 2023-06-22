@@ -78,4 +78,5 @@ contract Escrow {
             payable(seller).transfer(address(this).balance);
         }
     }
+    receive() external payable {}
 }
