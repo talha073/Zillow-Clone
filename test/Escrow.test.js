@@ -91,5 +91,9 @@ describe("Escrow", () => {
         .updateInspectionStatus(1, true);
       await transaction.wait();
     });
+    it("Updates inspection status", async () => {
+      const result = await escrow.inspectionPassed(1);
+      expect(result).to.be.equal(true);
+    });
   });
 });
