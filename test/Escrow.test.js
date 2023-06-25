@@ -130,6 +130,14 @@ describe("Escrow", () => {
 
       transaction = await escrow.connect(seller).approveSale(1);
       await transaction.wait();
+
+      transaction = await escrow.connect(lender).approveSale(1);
+      await transaction.wait();
+
+      await lender.sendTransaction({ to: escrow.address, value: tokens(5) });
+
+      transaction = await escrow.connect(seller).finalizeSale(1);
+      await transaction.wait();
     });
   });
 });
