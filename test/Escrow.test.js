@@ -124,6 +124,12 @@ describe("Escrow", () => {
         .connect(inspector)
         .updateInspectionStatus(1, true);
       await transaction.wait();
+
+      transaction = await escrow.connect(buyer).approveSale(1);
+      await transaction.wait();
+
+      transaction = await escrow.connect(seller).approveSale(1);
+      await transaction.wait();
     });
   });
 });
