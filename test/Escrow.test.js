@@ -113,4 +113,17 @@ describe("Escrow", () => {
       expect(await escrow.approval(1, lender.address)).to.be.equal(true);
     });
   });
+  describe("Sale", () => {
+    beforeEach(async () => {
+      let transaction = await escrow
+        .connect(buyer)
+        .depositEarnest(1, { value: tokens(5) });
+      await transaction.wait();
+
+      transaction = await escrow
+        .connect(inspector)
+        .updateInspectionStatus(1, true);
+      await transaction.wait();
+    });
+  });
 });
