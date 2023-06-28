@@ -25,7 +25,21 @@ module.exports = {
     },
   },
   solidity: "0.8.3",
-
+  etherscan: {
+    apiKey: {
+      mainnet: process.env.ETHERSCAN_API_KEY,
+      goerli: process.env.ETHERSCAN_API_KEY,
+      rinkeby: process.env.ETHERSCAN_API_KEY,
+      ropsten: process.env.ETHERSCAN_API_KEY,
+      polygon: process.env.MATIC_API_KEY,
+      polygonMumbai: process.env.MATIC_API_KEY,
+      bsc: process.env.BSCSCAN_API_KEY,
+      bscTestnet: process.env.BSCSCAN_API_KEY,
+      ftmTestnet: process.env.FTMSCAN_API_KEY,
+      arbitrumOne: process.env.ARBISCAN_KEY,
+      sepolia: process.env.ETHERSCAN_API_KEY,
+    },
+  },
   gasReporter: {
     enabled: true,
     currency: "USD",
