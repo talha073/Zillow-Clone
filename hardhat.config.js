@@ -23,6 +23,20 @@ module.exports = {
       accounts: [process.env.PRIVATE_KEY],
       chainId: 5,
     },
+    mumbai: {
+      url: process.env.MUMBAI_URL || "",
+      accounts: [process.env.PRIVATE_KEY],
+      chainId: 80001,
+    },
+    arbitrumGoerli: {
+      url: "https://goerli-rollup.arbitrum.io/rpc",
+      chainId: 421613,
+      accounts: [process.env.PRIVATE_KEY],
+    },
+    arbitrumOne: {
+      url: "https://arb1.arbitrum.io/rpc",
+      accounts: [process.env.PRIVATE_KEY],
+    },
   },
   solidity: "0.8.3",
   etherscan: {
